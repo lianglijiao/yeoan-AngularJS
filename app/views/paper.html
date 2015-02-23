@@ -1,0 +1,52 @@
+
+<h2>examine example-循环输出</h2>
+<div>
+  <div> {{nowTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+  <div>
+    <h1>{{question.xinjianshiti}}</h1>
+    <h5>模板<a href="javascript:void(0)" ng-repeat="t in templates">{{t}} &nbsp;&nbsp;</a></h5>
+  </div>
+
+  <div>
+    题目：<input type="text" ng-model="question.timu"><br>
+    分数：<input type="text" ng-model="question.fenshu" fenshu-num>
+  </div>
+
+  <div>
+    类型：
+    <select ng-model="question.type">
+      <option value="1" selected>单选</option>
+      <option value="2" >多选</option>
+    </select>
+
+    <div>
+      选项：<input type="button" ng-click="addOption()" value="增加选项">
+    </div>
+    <div>
+      <ul>
+        <li ng-repeat="o in question.options">
+          <b>{{$index+1}}.</b>
+          <input type="text" ng-model="o.content">
+          <a href="javascript:void(0)" ng-click="delOption($index)">删除</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <hr>
+
+
+  <h3>{{question.yulanshiti}}</h3>
+  [{{question.type | typeFilter}}]
+  <b>{{question.timu}}{{question.fenshu}}分</b>
+
+  <ul>
+    <li ng-repeat="o in question.options">
+      <b>{{$index+1}}.</b>
+      <input type="radio" ng-show="question.type == 1">
+      <input type="checkbox" ng-show="question.type == 2">
+      {{o.content}}
+    </li>
+  </ul>
+</div>
